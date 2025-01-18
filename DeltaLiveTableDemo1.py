@@ -12,3 +12,7 @@
 # COMMAND ----------
 
 # MAGIC %fs head dbfs:/FileStore/tables/nyctaxidata/dltlanding/yellow_green_commondata/taxizones/TaxiZones.csv
+
+# COMMAND ----------
+
+
