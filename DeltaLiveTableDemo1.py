@@ -74,5 +74,35 @@ display(files)
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC show databases
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC use raju_chal_dlt_demo_10_jan_2023
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC use raju_chal_dlt_demo_10_jan_2023
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESCRIBE raju_chal_dlt_demo_10_jan_2023.yellowtrip_bronze
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESCRIBE raju_chal_dlt_demo_10_jan_2023.yellotrip_taxizones_silver
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from raju_chal_dlt_demo_10_jan_2023.yellowtrip_bronze limit 10
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC
