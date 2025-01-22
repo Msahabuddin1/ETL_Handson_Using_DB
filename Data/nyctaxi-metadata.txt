@@ -1,0 +1,731 @@
+===================================================================================================
+#################  WORKING WITH GREEN TRIP DATA ##################################
+
+----------------------------------------------------------------------------------------------------
+Sample Data
+-------------
+
+VendorID,lpep_pickup_datetime,lpep_dropoff_datetime,store_and_fwd_flag,RatecodeID,PULocationID,DOLocationID,passenger_count,trip_distance,fare_amount,extra,mta_tax,tip_amount,tolls_amount,ehail_fee,improvement_surcharge,total_amount,payment_type,trip_type,congestion_surcharge
+2,2019-06-01 00:25:27,2019-06-01 00:33:52,N,1,74,263,5,2.34,9,0.5,0.5,1,0,,0.3,14.05,1,1,2.75
+
+
+************  WORKING WITH YELLOW TRIP DATA  *********************
+
+-------------------------------------------------------------------------------------------
+Sample Data
+-------------------------------------------------------------------------------------------
+
+VendorID,tpep_pickup_datetime,tpep_dropoff_datetime,passenger_count,trip_distance,RatecodeID,store_and_fwd_flag,PULocationID,DOLocationID,payment_type,fare_amount,extra,mta_tax,tip_amount,tolls_amount,improvement_surcharge,total_amount,congestion_surcharge
+1,2019-06-01 00:55:13,2019-06-01 00:56:17,1,.00,1,N,145,145,2,3,0.5,0.5,0,0,0.3,4.3,0
+
+
+====================================================================================================
+Working with Taxi Zone Data 
+====================================================================================================
+Sample Data
+------------
+
+"LocationID","Borough","Zone","service_zone"
+1,"EWR","Newark Airport","EWR"
+
+
+======================================================================================
+Working with Payment Types Data 
+======================================================================================
+Sample Data
+------------
+{"PaymentTypeID":1,"PaymentType":"Credit Card"}
+{"PaymentTypeID":2,"PaymentType":"Cash"}
+
+=================================================
+Working with Rate Codes Data 
+=================================================
+Sample Data
+------------
+
+RateCodeID,RateCode,IsApproved
+1,Standard Rate,Yes
+2,JFK,Yes
+
+
+
+
+
+
+
+************  WORKING WITH FHV TRIP DATA  *********************
+
+=============================================================================================================
+
+----------------------------------------------------------------------------------------
+Sample Data
+----------------------------------------------------------------------------------------
+
+
+dispatching_base_num,pickup_datetime,dropoff_datetime,PULocationID,DOLocationID,SR_Flag
+B00013,2019-06-01 00:51:33,2019-06-01 01:20:07,264,264,
+
+
+===============================================================
+CREATING TABLE WITH fhvbases.json Data
+===============================================================
+
+
+{
+     "License Number":"B02865"
+    ,"Entity Name":"VIER-NY,LLC"
+    ,"Telephone Number":6466657536
+    ,"SHL Endorsed":"No"
+    , "Address" : 
+      { 
+          "Building":"636"
+         ,"Street":"WEST   28 STREET"
+         ,"City":"NEW YORK"
+          ,"State":"NY"
+          ,"Postcode":10001
+      }
+    , "GeoLocation" : 
+      {     "Latitude":40.75273
+           ,"Longitude":-74.006408
+           ,"Location":"(40.75273, -74.006408)"
+      }
+    ,"Type of Base":"BLACK CAR BASE"   
+    ,"Date":"08/15/2019"
+    ,"Time":"18:03:31"    
+  }
+  
+license_number -  	$.["License Number"]
+entity_name - 		$.["Entity Name"]
+telephone_number- 	$.["Telephone Number"]
+shl_endorsed - 		$.["SHL Endorsed"]
+building_no - 		$.["Address"].["Building"]
+street – 			$.["Address"].["Street"]
+city- 				$.["Address"].["City"]
+state- 				$.["Address"].["State"]
+postcode - 			$.["Address"].[" Postcode "]
+latitude-			$.["GeoLocation"].["Latitude"]
+longitude-			$.["GeoLocation"].["Longitude"]
+location-			$.["GeoLocation"].["Location"]
+type_of_base -		$.["Type of Base"]
+date  -  			$.["Date"]
+time - 				$.["Time"]
+
+
+===================================================================================
+GREEN TRIP DATA Sets MetaData with DataType
+--------------------------------------------
+
+|-- VendorID: integer (nullable = true)
+|-- lpep_pickup_datetime: timestamp (nullable = true)
+|-- lpep_dropoff_datetime: timestamp (nullable = true)
+|-- store_and_fwd_flag: string (nullable = true)
+|-- RatecodeID: integer (nullable = true)
+|-- PULocationID: integer (nullable = true)
+|-- DOLocationID: integer (nullable = true)
+|-- passenger_count: integer (nullable = true)
+|-- trip_distance: double (nullable = true)
+|-- fare_amount: double (nullable = true)
+|-- extra: double (nullable = true)
+|-- mta_tax: double (nullable = true)
+|-- tip_amount: double (nullable = true)
+|-- tolls_amount: double (nullable = true)
+|-- ehail_fee: string (nullable = true)
+|-- improvement_surcharge: double (nullable = true)
+|-- total_amount: double (nullable = true)
+|-- payment_type: integer (nullable = true)
+|-- trip_type: integer (nullable = true)
+|-- congestion_surcharge: double (nullable = true)
+
+
+
+
+
+
+
+
+
+YELLOW TRIP DATA Sets MetaData with DataType
+--------------------------------------------
+
+|-- VendorID: integer (nullable = true)
+|-- tpep_pickup_datetime: timestamp (nullable = true)
+|-- tpep_dropoff_datetime: timestamp (nullable = true)
+|-- passenger_count: integer (nullable = true)
+|-- trip_distance: double (nullable = true)
+|-- RatecodeID: integer (nullable = true)
+|-- store_and_fwd_flag: string (nullable = true)
+|-- PULocationID: integer (nullable = true)
+|-- DOLocationID: integer (nullable = true)
+|-- payment_type: integer (nullable = true)
+|-- fare_amount: double (nullable = true)
+|-- extra: double (nullable = true)
+|-- mta_tax: double (nullable = true)
+|-- tip_amount: double (nullable = true)
+|-- tolls_amount: double (nullable = true)
+|-- improvement_surcharge: double (nullable = true)
+|-- total_amount: double (nullable = true)
+|-- congestion_surcharge: double (nullable = true)
+
+
+TAXI ZONES DATA Sets MetaData with DataType
+--------------------------------------------
+
+|-- LocationID: integer (nullable = true)
+|-- Borough: string (nullable = true)
+|-- Zone: string (nullable = true)
+|-- service_zone: string (nullable = true)
+
+
+PAYMENT TYPES DATA Set MetaData with DataType
+--------------------------------------------
+
+|-- PaymentTypeID: integer (nullable = true)
+|-- PaymentType: string (nullable = true)
+
+
+RATE CODES DATA Set MetaData with DataType
+--------------------------------------------
+
+|-- RateCodeID: integer (nullable = true)
+|-- RateCode: string (nullable = true)
+|-- IsApproved: string (nullable = true)
+
+
+
+
+==========================================================
+USE nyctaxidb;
+
+CREATE OR REPLACE TABLE managed_taxizones (LocationID INT, Borough String, Zone String, service String );
+
+INSERT INTO managed_taxizones 
+VALUES (1, "EWR","Newark Airport","EWR"),(2,"Queens","Jamaica Bay","Boro Zone");
+SELECT * FROM managed_taxizones;
+
+------------------------------------------------
+
+USE nyctaxidb_custom_location;
+
+CREATE OR REPLACE TABLE managed_taxizones_with_custom_location (LocationID INT, Borough String, Zone String, service String );
+
+INSERT INTO managed_taxizones_with_custom_location
+VALUES (1, "EWR","Newark Airport","EWR"),(2,"Queens","Jamaica Bay","Boro Zone");
+
+SELECT * FROM managed_taxizones_with_custom_location;
+
+------------------------------------------------------------
+
+%python 
+
+table_name = f"managed_taxizones_with_custom_location"
+tbl_location =   f"dbfs:/FileStore/schema/nyctaxidb_custom_location.db/{table_name}"
+print(tbl_location)
+
+files = dbutils.fs.ls(tbl_location)
+display(files)
+
+----------------------------------------
+Note the table's folder and the log file and data file are deleted.
+
+Only the schema location remains
+
+
+%python 
+db_location =   f"dbfs:/FileStore/schema/nyctaxidb_custom_location.db"
+print(db_location)
+dbutils.fs.ls(db_location)
+
+--------------------------------------------------------
+
+USE nyctaxidb;
+
+CREATE OR REPLACE TEMPORARY VIEW taxizones_tempview USING CSV OPTIONS (
+  path = '
+dbfs:/FileStore/tables/nyctaxidata/landing/yellow_green_commondata/taxizones/TaxiZones.csv',
+  header = "true",
+  mode = "FAILFAST" -- abort file parsing with a RuntimeException if any malformed lines are encountered
+);
+
+CREATE OR REPLACE TABLE external_taxizones LOCATION 'dbfs:/FileStore/tables/nyctaxidata/external_taxizones' AS
+SELECT * FROM taxizones_tempview;
+
+SELECT * FROM external_taxizones;
+
+--------------------------------------------
+
+The table definition no longer exists in the metastore, but the underlying data remain intact.
+
+
+%python 
+tbl_path = f"dbfs:/FileStore/tables/nyctaxidata/external_taxizones"
+files = dbutils.fs.ls(tbl_path)
+display(files)
+
+=======================================================================
+dbfs:/FileStore/tables/nyctaxidata/landing/yellowdata/yellow_tripdata/yellow_tripdata_2019_05.csv
+
+use nyctaxidb;
+-- mode "FAILFAST" will abort file parsing with a RuntimeException if any malformed lines are encountered
+CREATE TABLE yellowTripMay_ext
+USING CSV OPTIONS (
+  path = 'dbfs:/FileStore/tables/nyctaxidata/landing/yellowdata/yellow_tripdata/yellow_tripdata_2019_05.csv',
+  header = "true",
+  mode = "FAILFAST"
+);
+
+SELECT * FROM yellowTripMay_ext;
+
+--------------------------------
+CREATE VIEW loaded_yellowtrip_view AS
+  SELECT * 
+  FROM yellowTripMay_ext 
+  WHERE passenger_count >= 4 ;
+
+SELECT * FROM loaded_yellowtrip_view;
+
+------------------------------------------------
+CREATE TEMPORARY VIEW longYellowTrip_temp_view
+AS SELECT * FROM yellowTripMay_ext WHERE trip_distance >= 5.0 ORDER BY trip_distance ASC;
+
+SELECT * FROM longYellowTrip_temp_view;
+
+--------------------------------------------------
+
+CREATE GLOBAL TEMPORARY VIEW costlyYellowTrip_global_temp_view 
+AS SELECT * FROM yellowTripMay_ext WHERE total_amount > 50.0 ORDER BY total_amount DESC;
+
+SELECT * FROM global_temp.costlyYellowTrip_global_temp_view;
+
+-------------------------------------------------------------------------------------------
+
+Common Table Expressions (CTEs)
+CTEs can be used in a variety of contexts. Below, are a few examples of the different ways a CTE can be used in a query. First, an example of making multiple column aliases using a CTE.
+
+
+  
+WITH total_fare_yellowTripMay(
+  VendorID,pickup_datetime,dropoff_datetime,passenger_count,trip_distance,PickupLocationID,DropLocationID,total_amount
+) AS (
+  SELECT
+	VendorID,tpep_pickup_datetime,tpep_dropoff_datetime,passenger_count,trip_distance,PULocationID,DOLocationID,total_amount
+  FROM
+    yellowTripMay_ext
+)
+SELECT
+  *
+FROM
+  total_fare_yellowTripMay
+WHERE
+  total_amount > 50.0
+  AND passenger_count >0
+  AND trip_distance >0.0
+  AND pickup_datetime != dropoff_datetime;
+  
+==============================================
+  
+---- Next, is an example of a CTE in a CTE definition.
+  
+WITH factData_yellowTripMay AS (
+  WITH total_fare_yellowTripMay(
+  VendorID,pickup_datetime,dropoff_datetime,passenger_count,trip_distance,PickupLocationID,DropLocationID,total_amount
+	) AS (
+	SELECT
+	VendorID,tpep_pickup_datetime,tpep_dropoff_datetime,passenger_count,trip_distance,PULocationID,DOLocationID,total_amount
+	FROM
+    yellowTripMay_ext
+	)
+	SELECT
+	*
+	FROM
+	total_fare_yellowTripMay
+	WHERE
+  total_amount > 50.0
+  AND passenger_count >0
+  AND trip_distance >0.0
+  AND pickup_datetime != dropoff_datetime
+)
+SELECT
+  VendorID,sum(total_amount) AS total_fare_per_Vendor
+FROM
+  factData_yellowTripMay 
+  group by VendorID 
+  order by total_fare_per_Vendor desc;
+  
+===============================================================
+
+-- Now, here is an example of a CTE in a subquery.
+
+SELECT
+ VendorID,sum(passenger_count) AS HighFare_PassengerCount_PerVendor
+FROM
+  (
+  WITH total_fare_yellowTripMay(
+  VendorID,pickup_datetime,dropoff_datetime,passenger_count,trip_distance,PickupLocationID,DropLocationID,total_amount
+	) AS (
+	SELECT
+		VendorID,tpep_pickup_datetime,tpep_dropoff_datetime,passenger_count,trip_distance,PULocationID,DOLocationID,total_amount
+	FROM
+		yellowTripMay_ext
+	)
+	SELECT
+		*
+	FROM
+	total_fare_yellowTripMay
+	WHERE
+		total_amount > 50.0
+  AND passenger_count >0
+  AND trip_distance >0.0
+  AND pickup_datetime != dropoff_datetime
+    
+  )
+  group by VendorID
+  order by HighFare_PassengerCount_PerVendor desc;
+  
+--------------------------------------------------------------------
+
+We can also use a CTE in a subquery expression.
+
+SELECT
+  (
+    WITH loaded_yellowTrips AS (
+      SELECT passenger_count FROM yellowTripMay_ext
+    )
+    SELECT
+      count(*) AS `Number of Loaded Trips`
+    FROM
+      loaded_yellowTrips
+	  where passenger_count >= 5
+  ) AS `Number of Loaded Yellow Trips`;
+  
+-------------------------------------------
+
+Finally, here is a CTE in a CREATE VIEW statement.
+
+
+CREATE OR REPLACE VIEW Total_fare_perVendor_view 
+AS 
+	WITH total_fare_yellowTripMay(VendorID,pickup_datetime,dropoff_datetime,passenger_count,trip_distance,PickupLocationID,DropLocationID,total_amount)
+	AS ( SELECT VendorID,tpep_pickup_datetime,tpep_dropoff_datetime,passenger_count,trip_distance,PULocationID,DOLocationID,total_amount
+		FROM yellowTripMay_ext)
+	SELECT
+		*
+	FROM
+		total_fare_yellowTripMay
+	WHERE
+			total_amount > 0.0
+		AND passenger_count >0
+		AND trip_distance >0.0
+		AND pickup_datetime != dropoff_datetime;
+		
+
+SELECT VendorID, round(sum(total_amount),2) AS `Total Fare Amount Per Vendor` FROM Total_fare_perVendor_view group by VendorID;
+
+=======================================================================================================================
+
+CREATE TABLE yellowTrip_csv
+  (VendorID  integer,tpep_pickup_datetime timestamp,tpep_dropoff_datetime timestamp ,passenger_count integer, trip_distance double ,RatecodeID integer ,store_and_fwd_flag string ,PULocationID integer ,DOLocationID integer ,payment_type integer ,fare_amount double ,extra double ,mta_tax double ,tip_amount double ,tolls_amount double,improvement_surcharge double ,total_amount double,congestion_surcharge double)
+USING CSV
+OPTIONS (
+  header = "true",
+  delimiter = ","
+)
+LOCATION "dbfs:/FileStore/tables/nyctaxidata/landing/yellowdata/yellow_tripdata"
+
+
+----------------------------------------------------------------------------
+
+%python
+(spark.read
+      .option("header", "true")
+      .option("delimiter", ",")
+      .csv("dbfs:/FileStore/tables/nyctaxidata/landing/yellowdata/yellow_tripdata")
+      .write.mode("append")
+      .format("csv")
+      .save("dbfs:/FileStore/tables/nyctaxidata/landing/yellowdata/yellow_tripdata"))
+	  
+	  
+	  
+--------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE TEMP VIEW yellowtrip_raw_tmp_vw
+(VendorID  integer,tpep_pickup_datetime timestamp,tpep_dropoff_datetime timestamp ,passenger_count integer, trip_distance double ,RatecodeID integer ,store_and_fwd_flag string ,PULocationID integer ,DOLocationID integer ,payment_type integer ,fare_amount double ,extra double ,mta_tax double ,tip_amount double ,tolls_amount double,improvement_surcharge double ,total_amount double,congestion_surcharge double)
+USING CSV
+OPTIONS (
+  path = "dbfs:/FileStore/tables/nyctaxidata/landing/yellowdata/yellow_tripdata",
+  header = "true",
+  delimiter = ","
+);
+
+CREATE TABLE yellowtrip_raw_delta AS
+  SELECT * FROM yellowtrip_raw_tmp_vw;
+  
+SELECT * FROM yellowtrip_raw_delta;
+
+SELECT count(*) FROM yellowtrip_raw_delta;
+
+----------------------------------
+
+df.select('date_str', to_timestamp('date_str',"yyyy-MM-dd'T'hh:mm'Z'").alias('date')).show()
+df.select('date_str', from_unixtime(unix_timestamp('date_str', "yyyy-MM-dd'T'hh:mm'Z'")).alias('date')).show()
+
+select from_unixtime(unix_timestamp(tpep_pickup_datetime, "yyyy-MM-dd'T'hh:mm'Z'")) from  yellowtrip_raw_delta;
+select from_unixtime(unix_timestamp(tpep_pickup_datetime, "yyyy-MM-dd'T'hh:mm'Z'"),'MMM') from  yellowtrip_raw_delta;
+
+---------------------------------------------------------------------------
+
+CREATE OR REPLACE TABLE yellowtrip_filtered_delta AS
+SELECT VendorID,tpep_pickup_datetime as pickup_datetime, tpep_dropoff_datetime as dropoff_datetime, passenger_count, trip_distance, RatecodeID, PULocationID as PickupLocationID, DOLocationID as DropLocationID, payment_type, fare_amount,extra,mta_tax,tip_amount,tolls_amount,improvement_surcharge,total_amount,congestion_surcharge
+FROM yellowtrip_raw_delta
+where tpep_pickup_datetime != tpep_dropoff_datetime 
+AND year(tpep_pickup_datetime) =2019
+AND year(tpep_dropoff_datetime) =2019
+AND passenger_count > 0
+AND trip_distance > 0
+AND fare_amount > 0.0
+AND total_amount > 0.0
+AND PULocationID is not null
+AND DOLocationID is not null;
+
+select * from yellowtrip_filtered_delta;
+
+select count(*) from yellowtrip_filtered_delta;
+
+
+---------------------------------------------------------------
+yellowtrip_filtered_delta table column list
+-------------------------------------------
+VendorID
+pickup_datetime
+dropoff_datetime
+passenger_count
+trip_distance
+RatecodeID
+PickupLocationID
+DropLocationID
+payment_type
+fare_amount
+extra
+mta_tax
+tip_amount
+tolls_amount
+improvement_surcharge
+total_amount
+congestion_surcharge
+
+
+VendorID, pickup_datetime,dropoff_datetime,passenger_count,trip_distance, RatecodeID,PickupLocationID,DropLocationID,payment_type,fare_amount,extra,mta_tax,
+tip_amount,tolls_amount,improvement_surcharge,total_amount,congestion_surcharge
+-----------------------------------------------------------------
+
+CREATE OR REPLACE view yellowtrip_filtered_view AS
+SELECT VendorID,tpep_pickup_datetime as pickup_datetime, tpep_dropoff_datetime as dropoff_datetime, passenger_count, trip_distance, RatecodeID, PULocationID as PickupLocationID, DOLocationID as DropLocationID, payment_type, fare_amount,extra,mta_tax,tip_amount,tolls_amount,improvement_surcharge,total_amount,congestion_surcharge
+FROM yellowtrip_raw_delta
+where tpep_pickup_datetime != tpep_dropoff_datetime 
+AND year(tpep_pickup_datetime) =2019
+AND year(tpep_dropoff_datetime) =2019
+AND passenger_count > 0
+AND trip_distance > 0
+AND fare_amount > 0.0
+AND total_amount > 0.0
+AND PULocationID is not null
+AND DOLocationID is not null;
+
+SELECT * FROM yellowtrip_filtered_view
+
+------------------------------------------------------------------------------
+
+ALTER TABLE yellowtrip_filtered_delta ADD CONSTRAINT cons_passenger_count CHECK (passenger_count > 0);
+ALTER TABLE yellowtrip_filtered_delta ADD CONSTRAINT cons_trip_distance CHECK (trip_distance > 0);
+
+DESCRIBE EXTENDED yellowtrip_filtered_delta
+
+------------------------------------------------------------------------------
+
+Partitioning Table
+-------------------
+
+--Partitioned Table
+
+CREATE OR REPLACE TABLE yellowtrip_filtered_partitioned
+COMMENT "Contains Partitioned table"
+LOCATION "dbfs:/FileStore/tables/nyctaxidata/stage1_spark/yellowdata/yellowtrip_partition"
+PARTITIONED BY (VendorID)
+AS
+  SELECT *, 
+    current_timestamp() updated,
+    input_file_name() source_file
+  FROM yellowtrip_filtered_delta;
+  
+SELECT * FROM yellowtrip_filtered_partitioned;
+
+
+DESCRIBE EXTENDED yellowtrip_filtered_partitioned;
+
+
+---------------------------------------------
+
+Cloning Delta Lake Tables
+-----------------------
+
+
+CREATE OR REPLACE TABLE yellowtrip_filtered_clone
+DEEP CLONE yellowtrip_filtered_delta
+
+
+CREATE OR REPLACE TABLE yellowtrip_filtered_shallow_clone
+SHALLOW CLONE yellowtrip_filtered_delta
+
+
+==================================================================================
+GREEN TRIP ETL
+
+CREATE OR REPLACE TEMP VIEW greentrip_raw_tmp_vw
+USING CSV
+OPTIONS (
+  path = "dbfs:/FileStore/tables/nyctaxidata/landing/greendata/green_tripdata",
+  header = "true",
+  delimiter = ",",
+  inferSchema = "true"
+);
+
+select * from greentrip_raw_tmp_vw;
+
+CREATE or replace TABLE greentrip_raw_delta AS
+  SELECT * FROM greentrip_raw_tmp_vw;
+  
+  
+greentrip_raw_delta table columns list
+-----------------------------------------
+VendorID
+lpep_pickup_datetime
+lpep_dropoff_datetime
+store_and_fwd_flag
+RatecodeID
+PULocationID
+DOLocationID
+passenger_count
+trip_distance
+fare_amount
+extra
+mta_tax
+tip_amount
+tolls_amount
+ehail_fee
+improvement_surcharge
+total_amount
+payment_type
+trip_type
+congestion_surcharge
+
+
+--Create Filtered Green Trip table ------------
+
+CREATE OR REPLACE TABLE greentrip_filtered_delta AS
+SELECT VendorID,lpep_pickup_datetime as pickup_datetime, lpep_dropoff_datetime as dropoff_datetime, passenger_count, trip_distance, RatecodeID, PULocationID as PickupLocationID, DOLocationID as DropLocationID, payment_type, fare_amount,extra, mta_tax,tip_amount,tolls_amount, improvement_surcharge, total_amount, congestion_surcharge, ehail_fee,trip_type
+FROM greentrip_raw_delta
+where lpep_pickup_datetime != lpep_dropoff_datetime 
+AND year(lpep_pickup_datetime) =2019
+AND year(lpep_dropoff_datetime) =2019
+AND passenger_count > 0
+AND trip_distance > 0
+AND fare_amount > 0.0
+AND total_amount > 0.0
+AND PULocationID is not null
+AND DOLocationID is not null;
+
+select * from greentrip_filtered_delta;
+
+select count(*) from greentrip_filtered_delta;
+
+
+----------------------------------------------------------
+
+4.	Combine Yellow and Green Trip Data Sets
+
+
+
+
+
+
+
+
+
+===================================================================================================
+
+COMMON DATA OPERATIONS
+
+%fs ls dbfs:/FileStore/tables/nyctaxidata/landing/yellow_green_commondata/taxizones/
+
+
+CREATE OR REPLACE TEMP VIEW taxizones_raw_tmp_vw
+USING CSV
+OPTIONS (
+  path = "dbfs:/FileStore/tables/nyctaxidata/landing/yellow_green_commondata/taxizones/",
+  header = "true",
+  delimiter = ",",
+  inferSchema = "true"
+);
+
+select * from taxizones_raw_tmp_vw;
+
+CREATE or replace TABLE taxizones_delta AS
+  SELECT * FROM taxizones_raw_tmp_vw;
+  
+  ------------------------------------------------------
+  
+%fs ls dbfs:/FileStore/tables/nyctaxidata/landing/yellow_green_commondata/ratecodes/ 
+
+CREATE OR REPLACE TEMP VIEW ratecodes_raw_tmp_vw
+USING CSV
+OPTIONS (
+  path = "dbfs:/FileStore/tables/nyctaxidata/landing/yellow_green_commondata/ratecodes/",
+  header = "true",
+  delimiter = ",",
+  inferSchema = "true"
+);
+
+select * from ratecodes_raw_tmp_vw;
+
+CREATE or replace TABLE ratecodes_delta AS
+  SELECT * FROM ratecodes_raw_tmp_vw;
+  
+ -----------------------------------------------------------
+ 
+ %fs ls dbfs:/FileStore/tables/nyctaxidata/landing/yellow_green_commondata/paymenttypes/  
+ 
+ CREATE or replace TABLE paymenttypes_delta 
+ AS
+ SELECT * FROM json.`dbfs:/FileStore/tables/nyctaxidata/landing/yellow_green_commondata/paymenttypes/`
+ 
+ =====================================================================================================
+yellowtrip_filtered_delta
+greentrip_filtered_delta
+yellowgreentripcombinedelta
+
+
+taxizones_delta
+paymenttypes_delta
+ratecodes_delta
+
+
+
+yellowgreentripcombinedelta columns list
+--------------------------------------------
+VendorID
+pickup_datetime
+dropoff_datetime
+passenger_count
+trip_distance
+RatecodeID
+PickupLocationID
+DropLocationID
+payment_type
+fare_amount
+extra
+mta_tax
+tip_amount
+tolls_amount
+improvement_surcharge
+total_amount
+congestion_surcharge
+taxiType
